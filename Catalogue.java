@@ -1,6 +1,9 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -36,7 +39,17 @@ public class Catalogue {
 	}
 	
 	public static ArrayList<Entry> buildEvents() {
-		ArrayList<Entry> events = new ArrayList<Entry>();
+		File data = null;
+		Scanner dataScanner = null;
+		try {
+			data = new File("data.txt");
+			dataScanner = new Scanner(data);
+			dataScanner.useDelimiter("#");
+		} catch (Exception e) {
+			System.out.println("error with file");
+			e.printStackTrace();
+		}
+		ArrayList<Entry> catEntries = new ArrayList<Entry>();
 		boolean pink;
 		for (int i = 0; i < 10; i++) {
 			if (i%2 == 0) {
@@ -44,8 +57,18 @@ public class Catalogue {
 			} else {
 				pink = false;
 			}
-			events.add(new Entry("Brick Street", "Bar", "$$", pink));
+			if (i < 5) {
+				String name = dataScanner.next();
+				String type = dataScanner.next();
+				String price = dataScanner.next();
+				catEntries.add(new Entry(name, type, price, pink));
+				dataScanner.nextLine();
+			} else {
+				Entry e = new Entry("null", "null", "null", pink);
+				catEntries.add(e);
+			}
+			
 		}
-		return events;
+		return catEntries;
 	}
 }
