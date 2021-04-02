@@ -17,6 +17,10 @@ public class Entry extends JPanel implements ActionListener{
 	JButton visit;
 	
 	public Entry(String name, String type, String dollar, boolean red) {
+		this.name = name;
+		this.type = type;
+		this.dollar = dollar;
+		
 		super.setLayout(new GridLayout(3,3));
 		JLabel grid1 = new JLabel("Name: ");
 		JLabel grid2 = new JLabel(name);
@@ -60,15 +64,22 @@ public class Entry extends JPanel implements ActionListener{
 		try {
 			f = new File("data.txt");
 			s = new Scanner(f);
+			s.useDelimiter("#");
 			
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-		
-		while (!(s.next().equals(name))) {
-			s.nextLine();
+		String findName = s.next();
+
+		for (int i = 0; i < 5; i++) {
+			if (findName.equals(this.name)) {
+				break;
+			} else {
+				s.nextLine();
+				findName = s.next();
+			}
 		}
-		String name = s.next();
+		String n = s.next();
 		String type = s.next();
 		String price = s.next();
 		String monday = s.next();
@@ -92,12 +103,12 @@ public class Entry extends JPanel implements ActionListener{
 		String description = s.next();
 		String imageUrl = s.next();
 		
-		Event event = new Event(name, type, price, url, phoneNum, address, description, imageUrl, map);
+		Event event = new Event(n, type, price, url, phoneNum, address, description, imageUrl, map);
 		
 		
-		
-		EventPanelOOP = new EventPanelOOP(event);
+		EventPanelOOP eventpanel= new EventPanelOOP(event);
 		// TODO Auto-generated method stub
 		
 	}
 }
+
