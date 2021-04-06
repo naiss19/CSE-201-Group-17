@@ -106,7 +106,7 @@ public class Entry extends JPanel implements ActionListener{
 		Event event = new Event(n, type, price, url, phoneNum, address, description, imageUrl, map);
 		
 		
-		EventPanelOOP eventpanel= new EventPanelOOP(event);
+		EventPanelOOP eventpanel= new EventPanelOOP(event.getName(), event.getType(), event.getPrice(), event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(), event.getImageUrl(), map);
 		// TODO Auto-generated method stub
 		
 	}
