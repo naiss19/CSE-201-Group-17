@@ -33,17 +33,17 @@ public class EventPanelOOP extends JFrame{
 	   private String name, type, price, url, phoneNum, address, description, imageUrl, hoursString;
 	   private HashMap<String, String> hours;
 	   
-	   public EventPanelOOP(Event e){
+	   public EventPanelOOP(String name, String type, String price, String url, String phoneNum, String address, String description, String imageUrl, HashMap<String, String> hours){
 		   //initializing variables from passed in Event object 
-		   name=e.getName();
-		   type=e.getType();
-		   price=e.getPrice();
-		   url=e.getUrl();
-		   phoneNum= e.getPhoneNum();
-		   address= e.getAddress;
-		   description = e.getDescription();
-		   imageUrl = e.getImageUrl();
-		   hours= e.getHours();
+		   this.name=name;
+		   this.type=type;
+		   this.price=price;
+		   this.url=url;
+		   this.phoneNum= phoneNum;
+		   this.address= address;
+		   this.description = description;
+		   this.imageUrl = imageUrl;
+		   this.hours = hours;
 		   
 		   //getting day and hours from hashmap
 		   for (HashMap.Entry<String, String> entry : hours.entrySet()) {
