@@ -79,7 +79,7 @@ public class Entry extends JPanel implements ActionListener{
 				findName = s.next();
 			}
 		}
-		String n = s.next();
+		
 		String type = s.next();
 		String price = s.next();
 		String monday = s.next();
@@ -103,7 +103,7 @@ public class Entry extends JPanel implements ActionListener{
 		String description = s.next();
 		String imageUrl = s.next();
 		
-		Event event = new Event(n, type, price, url, phoneNum, address, description, imageUrl, map);
+		Event event = new Event(findName, type, price, url, phoneNum, address, description, imageUrl, map);
 		
 		
 		EventPanelOOP eventpanel= new EventPanelOOP(event.getName(), event.getType(), event.getPrice(), event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(), event.getImageUrl(), map);
