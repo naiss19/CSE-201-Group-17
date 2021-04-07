@@ -1,19 +1,11 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 /**
@@ -24,8 +16,12 @@ import javax.swing.JTextField;
 public class HomePage extends JPanel implements ActionListener {
 	//TODO: Change sort into a JComboBox
 	String[] sortTypes = {"Name",  "Type", "Price", "Location", "Rating"};
+	
 	JComboBox sort = new JComboBox(sortTypes);
 	JButton go = new JButton("Go!");
+	JButton addEvent = new JButton("Create a new attraction");
+	JFrame mainFrame = new JFrame();
+	JPanel mainPanel = new JPanel();
 	/**
 	 * Creates the home page using a couple JPanels, a JButton, and a JMenu to sort by a certain criteria
 	 * @return the home page jpanel
@@ -58,11 +54,14 @@ public class HomePage extends JPanel implements ActionListener {
 		searchBarPanel.add(bar);
 		buttonPanel.add(go);
 		buttonPanel.add(sort);
+		buttonPanel.add(addEvent);
+		addEvent.addActionListener(this);
 		bar.setSize(200, 24);
 		
 		//Aligning all of the internal panels for aesthetic purposes
 		bar.setAlignmentX(CENTER_ALIGNMENT);
 		go.setAlignmentX(CENTER_ALIGNMENT);
+		go.addActionListener(this);
 		label.setAlignmentX(CENTER_ALIGNMENT);
 		
 		//Adding all of the smaller panels and label to the larger JFrame
@@ -74,32 +73,37 @@ public class HomePage extends JPanel implements ActionListener {
 		return search;
 		
 	}
+	
+	public HomePage() {
+		mainPanel.add(searchBar());
+		mainFrame.setSize(500, 300);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.add(mainPanel);
+		mainFrame.setVisible(true);
+	}
 	/**
 	 * This method creates a JFrame in which the main JPanel is added.
 	 * @param args main parameter for the main method
 	 */
 	public static void main(String[] args) {
 		HomePage home = new HomePage();
-		JFrame mainFrame = new JFrame();
-		JPanel mainPanel = new JPanel();
-		mainPanel.add(home.searchBar());
-		
-		mainFrame.setSize(1000, 600);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.add(mainPanel);
-		mainFrame.setVisible(true);
-		
-		
 	}
 	/**
 	 * The action listener that will be used for the search button and the sort by menu
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getSource() == go) {
-			
+			mainFrame.setContentPane(Catalogue.buildCatalogue());
+			mainFrame.pack();
 		}
+		if (e.getSource() == addEvent) {
+//			mainPanel.setVisible(false);
+			CreatePage c = new CreatePage();
+			mainFrame.setContentPane(c.eventAdd());
+			mainFrame.pack();
+		}
+		
 		
 	}
 }
