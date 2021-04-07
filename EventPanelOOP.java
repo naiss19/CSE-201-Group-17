@@ -30,15 +30,15 @@ public class EventPanelOOP extends JFrame{
 	   private JPanel controlPanel;
 	   private JLabel msglabel;
 	   
-	private String name;
-	private String type;
-	private String price;
-	private String url;
-	private String phoneNum;
-	private String address;
-	private String description;
-	private String imageUrl;
-	private String hoursString;
+	   private String name;
+	   private String type;
+	   private String price;
+	   private String url;
+	   private String phoneNum;
+	   private String address;
+	   private String description;
+	   private String imageUrl;
+	   private String hoursString;
 	   private HashMap<String, String> hours;
 	   
 	   public EventPanelOOP(String name, String type, String price, String url, String phoneNum, String address, String description, String imageUrl, HashMap<String, String> hours){
@@ -110,84 +110,84 @@ public class EventPanelOOP extends JFrame{
 	      
 
 	      //Type      
-	      JLabel typeLabel = new JLabel("", JLabel.CENTER);
+	      JLabel typeLabel = new JLabel("", JLabel.RIGHT);
 	      typeLabel.setText("Venue Type: ");
 	      typeLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      typeLabel.setForeground(Color.BLACK);
 	      panel.add(typeLabel);
-	      JLabel eventType = new JLabel("", JLabel.CENTER);
+	      JLabel eventType = new JLabel("", JLabel.LEFT);
 	      eventType.setText(type);
 	      eventType.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventType.setForeground(Color.black);
 	      panel.add(eventType);
 	      
 	      //Price 
-	      JLabel priceLabel = new JLabel("", JLabel.CENTER);
+	      JLabel priceLabel = new JLabel("", JLabel.RIGHT);
 	      priceLabel.setText("Price: ");
 	      priceLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      priceLabel.setForeground(Color.BLACK);
 	      panel.add(priceLabel);
-	      JLabel eventPrice = new JLabel("", JLabel.CENTER);
+	      JLabel eventPrice = new JLabel("", JLabel.LEFT);
 	      eventPrice.setText(price);
 	      eventPrice.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventPrice.setForeground(Color.black);
 	      panel.add(eventPrice);
 
 	      // Website info
-	      JLabel weblink = new JLabel("", JLabel.CENTER);
+	      JLabel weblink = new JLabel("", JLabel.RIGHT);
 	      weblink.setText("Visit the Website: ");
 	      weblink.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      weblink.setForeground(Color.BLACK);
 	      panel.add(weblink);
-	      JLabel eventWeblink = new JLabel("", JLabel.CENTER);
+	      JLabel eventWeblink = new JLabel("", JLabel.LEFT);
 	      eventWeblink.setText(url);
 	      eventWeblink.setFont(new Font ("TimesRoman", Font.ITALIC, 20));
 	      eventWeblink.setForeground(navy);
 	      panel.add(eventWeblink);
 	      
 	      //Phone number
-	      JLabel contact = new JLabel("", JLabel.CENTER);
+	      JLabel contact = new JLabel("", JLabel.RIGHT);
 	      contact.setText("Contact the Venue: ");
 	      contact.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      contact.setForeground(Color.BLACK);
 	      panel.add(contact);
-	      JLabel eventContact= new JLabel("", JLabel.CENTER);
+	      JLabel eventContact= new JLabel("", JLabel.LEFT);
 	      eventContact.setText(phoneNum);
 	      eventContact.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventContact.setForeground(navy);
 	      panel.add(eventContact);
 	      
 	      //Address
-	      JLabel addressLabel = new JLabel("", JLabel.CENTER);
+	      JLabel addressLabel = new JLabel("", JLabel.RIGHT);
 	      addressLabel.setText("Venue Address: ");
 	      addressLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      addressLabel.setForeground(Color.BLACK);
 	      panel.add(addressLabel);
-	      JLabel eventAddress= new JLabel("", JLabel.CENTER);
+	      JLabel eventAddress= new JLabel("", JLabel.LEFT);
 	      eventAddress.setText(address);
 	      eventAddress.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventAddress.setForeground(navy);
 	      panel.add(eventAddress);
 	      
 	      //Hours
-	      JLabel hours = new JLabel("", JLabel.CENTER);
+	      JLabel hours = new JLabel("", JLabel.RIGHT);
 	      hours.setText("Hours: ");
 	      hours.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      hours.setForeground(Color.BLACK);
 	      panel.add(hours);
-	      JLabel eventHours= new JLabel("", JLabel.CENTER);
+	      JLabel eventHours= new JLabel("", JLabel.LEFT);
 	      eventHours.setText(hoursString);
 	      eventHours.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventHours.setForeground(navy);
 	      panel.add(eventHours);
 	      
 	      //description 
-	      JLabel descriptionLabel = new JLabel("", JLabel.CENTER);
+	      JLabel descriptionLabel = new JLabel("", JLabel.RIGHT);
 	      descriptionLabel.setText("About: ");
 	      descriptionLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      descriptionLabel.setForeground(Color.BLACK);
 	      panel.add(descriptionLabel);
-	      JLabel eventDescription= new  JLabel("", JLabel.CENTER);
+	      JLabel eventDescription= new  JLabel("", JLabel.LEFT);
 	      eventDescription.setText(description);
 	      eventDescription.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventDescription.setForeground(Color.black);
@@ -227,7 +227,7 @@ public class EventPanelOOP extends JFrame{
 	      
 	      JLabel label = new JLabel(new ImageIcon(image));
 	      mainFrame.getContentPane().add(label);
-	      //mainFrame.pack();
+	      mainFrame.pack();
 	      mainFrame.setVisible(true); 
 	      
 	   }
