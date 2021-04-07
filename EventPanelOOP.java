@@ -30,7 +30,15 @@ public class EventPanelOOP extends JFrame{
 	   private JPanel controlPanel;
 	   private JLabel msglabel;
 	   
-	   private String name, type, price, url, phoneNum, address, description, imageUrl, hoursString;
+	private String name;
+	private String type;
+	private String price;
+	private String url;
+	private String phoneNum;
+	private String address;
+	private String description;
+	private String imageUrl;
+	private String hoursString;
 	   private HashMap<String, String> hours;
 	   
 	   public EventPanelOOP(String name, String type, String price, String url, String phoneNum, String address, String description, String imageUrl, HashMap<String, String> hours){
@@ -46,17 +54,23 @@ public class EventPanelOOP extends JFrame{
 		   this.hours = hours;
 		   
 		   //getting day and hours from hashmap
-		   for (HashMap.Entry<String, String> entry : hours.entrySet()) {
-			    hoursString += entry.getKey() + ": " + entry.getValue() + '\n';
-			}
+		   hoursString = "Sunday: " + hours.get("Sunday") + " ";
+		   hoursString += "Monday: " + hours.get("Monday") + " ";
+		   hoursString += "Tuesday: " + hours.get("Tuesday") + " ";
+		   hoursString += "Wednesday: " + hours.get("Wednesday") + " ";
+		   hoursString += "Thursday: " + hours.get("Thursday") + " ";
+		   hoursString += "Friday: " + hours.get("Friday") + " ";
+		   hoursString += "Saturday: " + hours.get("Saturday") + " ";
 		   
 		   eventSetup();
+		   showGridLayoutDemo();
 	   }
-	   public static void main(String[] args){
-		   //displaying the event panel
-		  EventPanel eventGUI = new EventPanel();  
-	      eventGUI.showGridLayoutDemo();       
-	   }
+//	   public static void main(String[] args){
+//		   System.out.print("type " + type);
+//		   //displaying the event panel
+//		  EventPanel eventGUI = new EventPanel();  
+//	      eventGUI.showGridLayoutDemo();       
+//	   }
 	
 	   public void eventSetup() {
 		   
@@ -213,7 +227,7 @@ public class EventPanelOOP extends JFrame{
 	      
 	      JLabel label = new JLabel(new ImageIcon(image));
 	      mainFrame.getContentPane().add(label);
-	      mainFrame.pack();
+	      //mainFrame.pack();
 	      mainFrame.setVisible(true); 
 	      
 	   }
