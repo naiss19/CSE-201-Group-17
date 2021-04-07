@@ -33,22 +33,9 @@ public class CreatePage extends JPanel implements ActionListener {
 			typeLabel = new JLabel("Type of Attraction:"), phoneLabel = new JLabel("Phone Number:"),
 			linkLabel = new JLabel("Link:"), hourLabel = new JLabel("Hours of Operation:");
 
-	private class Event {
-		String name, type, description, phoneNum, link;
-
-		Event() {
-			this.name = "Brick Street";
-			this.type = "Night Life";
-			this.description = "The biggest bar in uptown Oxford";
-			this.phoneNum = "614-672-2863";
-			this.link = "www.brickstreetbar.com";
-		}
-	}
-
 	public JPanel eventAdd() {
 		JPanel bigPanel = new JPanel(new BorderLayout());
 		JPanel addPanel = new JPanel(new GridLayout(7, 2));
-		Event newEvent = new Event();
 		addPanel.add(nameLabel);
 		addPanel.add(name);
 		addPanel.add(priceLabel);
