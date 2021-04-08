@@ -53,14 +53,16 @@ public class EventPanelOOP extends JFrame{
 		   this.imageUrl = imageUrl;
 		   this.hours = hours;
 		   
+		   Calendar calendar = Calendar.getInstance();
+		   int day = calendar.get(Calendar.DAY_OF_WEEK);
 		   //getting day and hours from hashmap
-		   hoursString = "Sunday: " + hours.get("Sunday") + " ";
-		   hoursString += "Monday: " + hours.get("Monday") + " ";
-		   hoursString += "Tuesday: " + hours.get("Tuesday") + " ";
-		   hoursString += "Wednesday: " + hours.get("Wednesday") + " ";
-		   hoursString += "Thursday: " + hours.get("Thursday") + " ";
-		   hoursString += "Friday: " + hours.get("Friday") + " ";
-		   hoursString += "Saturday: " + hours.get("Saturday") + " ";
+		   if(day==1) hoursString = "Sunday: " + hours.get("Sunday");
+		   if(day==2) hoursString = "Monday: " + hours.get("Monday");
+		   if(day==3)hoursString = "Tuesday: " + hours.get("Tuesday");
+		   if(day==4)hoursString = "Wednesday: " + hours.get("Wednesday");
+		   if(day==5)hoursString = "Thursday: " + hours.get("Thursday");
+		   if(day==6)hoursString = "Friday: " + hours.get("Friday");
+		   if(day==7) hoursString = "Saturday: " + hours.get("Saturday");
 		   
 		   eventSetup();
 		   showGridLayoutDemo();
@@ -175,8 +177,7 @@ public class EventPanelOOP extends JFrame{
 	      hours.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      hours.setForeground(Color.BLACK);
 	      panel.add(hours);
-	      JLabel eventHours= new JLabel("", JLabel.LEFT);
-	      eventHours.setText(hoursString);
+	      JTextArea eventHours= new JTextArea(hoursString);
 	      eventHours.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventHours.setForeground(navy);
 	      panel.add(eventHours);
@@ -187,10 +188,11 @@ public class EventPanelOOP extends JFrame{
 	      descriptionLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      descriptionLabel.setForeground(Color.BLACK);
 	      panel.add(descriptionLabel);
-	      JLabel eventDescription= new  JLabel("", JLabel.LEFT);
+	      JTextArea eventDescription= new JTextArea(description);
 	      eventDescription.setText(description);
 	      eventDescription.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 	      eventDescription.setForeground(Color.black);
+	      //eventDescription.setLineWrap(true);
 	      panel.add(eventDescription);
 
 	      controlPanel.add(panel);
@@ -202,7 +204,7 @@ public class EventPanelOOP extends JFrame{
 //	      panel.setLayout(new GridLayout(9,1));    
 //	      
 //	      JTextArea eventDescription= new  JTextArea(30,40);
-//	      eventDescription.setText("Oxford’s premiere bar and music venue.");
+//	      eventDescription.setText("Oxfordâ€™s premiere bar and music venue.");
 //	      eventDescription.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
 //	      eventDescription.setForeground(Color.black);
 //	      panel.add(eventDescription);
