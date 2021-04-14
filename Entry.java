@@ -82,7 +82,7 @@ public class Entry extends JPanel implements ActionListener{
 		}
 		String findName = s.next();
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			if (findName.equals(this.name)) {
 				break;
 			} else {
