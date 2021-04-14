@@ -57,17 +57,12 @@ public class Catalogue {
 			} else {
 				pink = false;
 			}
-			if (i < 5) {
-				String name = dataScanner.next();
-				String type = dataScanner.next();
-				String price = dataScanner.next();
-				catEntries.add(new Entry(name, type, price, pink));
-				dataScanner.nextLine();
-			} else {
-				Entry e = new Entry("null", "null", "null", pink);
-				catEntries.add(e);
-			}
-			
+
+			String name = dataScanner.next();
+			String type = dataScanner.next();
+			String price = dataScanner.next();
+			catEntries.add(new Entry(name, type, price, pink));
+			dataScanner.nextLine();		
 		}
 		return catEntries;
 	}
