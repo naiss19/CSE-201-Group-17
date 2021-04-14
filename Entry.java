@@ -25,18 +25,18 @@ public class Entry extends JPanel implements ActionListener{
 		super.setLayout(new GridLayout(3,3));
 		JLabel grid1 = new JLabel("Name: ");
 		grid1.setFont(new Font ("TimesRoman", Font.BOLD | Font.ITALIC, 20));
+		grid1.setForeground(Color.GRAY.darker());
 		
 		JLabel grid2 = new JLabel(name);
 		grid2.setFont(new Font ("TimesRoman", Font.BOLD, 17));
-		grid2.setForeground(Color.RED.darker());
 		JButton grid3_clear = new JButton("");
 		grid3_clear.setVisible(false);
 		JLabel grid4 = new JLabel("Type: ");
 		grid4.setFont(new Font ("TimesRoman", Font.BOLD | Font.ITALIC, 20));
+		grid4.setForeground(Color.GRAY.darker());
 		
 		JLabel grid5 = new JLabel(type);
 		grid5.setFont(new Font ("TimesRoman", Font.BOLD, 17));
-		grid5.setForeground(Color.RED.darker());
 		JButton grid6_clear = new JButton("");
 		grid6_clear.setVisible(false);
 		JLabel grid7 = new JLabel(dollar);
