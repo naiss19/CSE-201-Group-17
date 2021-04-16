@@ -73,7 +73,7 @@ public class Entry extends JPanel implements ActionListener{
 		File f = null;
 		Scanner s = null;
 		try {
-			f = new File("data.txt");
+			f = new File("/Users/BrandonHall/Documents/Development/eclipse/CincySearch/data.txt");
 			s = new Scanner(f);
 			s.useDelimiter("#");
 			
@@ -114,11 +114,13 @@ public class Entry extends JPanel implements ActionListener{
 		String description = s.next();
 		String imageUrl = s.next();
 		
-		Event event = new Event(findName, type, price, url, phoneNum, address, description, imageUrl, map);
+		EventClass event = new EventClass(findName, type, price, url, phoneNum, address, description, imageUrl, map);
 		
-		
-		EventPanelOOP eventpanel= new EventPanelOOP(event.getName(), event.getType(), event.getPrice(), event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(), event.getImageUrl(), map);
+		System.out.println(event.getName());
+		EventPanelOOP2 eventpanel= new EventPanelOOP2(event.getName(), event.getType(), event.getPrice(), event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(), event.getImageUrl(), map);
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 }
