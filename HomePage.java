@@ -24,7 +24,7 @@ import javax.swing.JTextField;
  */
 public class HomePage extends JPanel implements ActionListener {
 	// TODO: Change sort into a JComboBox
-	String[] sortTypes = { "Name", "Type", "Price", "Location", "Rating" };
+	String[] sortTypes = { "Name", "Price"};
 
 	JComboBox sort = new JComboBox(sortTypes);
 	JButton go = new JButton("Go!");
@@ -175,7 +175,7 @@ public class HomePage extends JPanel implements ActionListener {
 		if (e.getSource() == go) {
 			System.out.println(bar.getText());
 			if (bar.getText().equals(new String("Search"))) {
-				Catalogue.buildCatalogue();
+				Catalogue.buildCatalogue(sort.getSelectedIndex());
 				mainFrame.setContentPane(Catalogue.cataloguePanel);
 				mainFrame.pack();
 			return;
