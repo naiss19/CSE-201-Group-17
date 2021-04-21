@@ -25,7 +25,7 @@ public class Catalogue {
 		frame.setSize(600, 850);
 		frame.setTitle("Cincy Catalogue");
 		
-		buildCatalogue();
+		buildCatalogue(-1);
 		frame.add(cataloguePanel);
 		frame.setVisible(true);
 	}
