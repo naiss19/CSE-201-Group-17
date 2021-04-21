@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 /**
  * 
@@ -19,6 +20,7 @@ public class HomePage extends JPanel implements ActionListener {
 	
 	JComboBox sort = new JComboBox(sortTypes);
 	JButton go = new JButton("Go!");
+	JButton faq = new JButton("FAQ");
 	JButton addEvent = new JButton("Create a new attraction");
 	JFrame mainFrame = new JFrame();
 	JPanel mainPanel = new JPanel();
@@ -45,9 +47,6 @@ public class HomePage extends JPanel implements ActionListener {
 		label.setFont (label.getFont ().deriveFont (64.0f));
 		label.setFont(new Font("Times New Roman", Font.BOLD, 64));
 		
-		
-		
-				
 		sort.addActionListener(this);
 		
 		//Adding all of the components to the internal panels
@@ -55,12 +54,15 @@ public class HomePage extends JPanel implements ActionListener {
 		buttonPanel.add(go);
 		buttonPanel.add(sort);
 		buttonPanel.add(addEvent);
+		buttonPanel.add(faq);
 		addEvent.addActionListener(this);
 		bar.setSize(200, 24);
 		
 		//Aligning all of the internal panels for aesthetic purposes
 		bar.setAlignmentX(CENTER_ALIGNMENT);
 		go.setAlignmentX(CENTER_ALIGNMENT);
+		faq.setAlignmentX(CENTER_ALIGNMENT);
+		faq.addActionListener(this);
 		go.addActionListener(this);
 		label.setAlignmentX(CENTER_ALIGNMENT);
 		
@@ -74,12 +76,23 @@ public class HomePage extends JPanel implements ActionListener {
 		
 	}
 	
-	public HomePage() {
+	
+	public void run() {
 		mainPanel.add(searchBar());
 		mainFrame.setSize(500, 300);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.add(mainPanel);
 		mainFrame.setVisible(true);
+	}
+	
+	public void FAQ() {
+		JFrame j = new JFrame();
+		JPanel p = new JPanel();
+		JTextArea t = new JTextArea();
+		t.setText("");
+		p.add(t);
+		j.setVisible(true);
+		j.setSize(500, 400);
 	}
 	/**
 	 * This method creates a JFrame in which the main JPanel is added.
@@ -87,6 +100,7 @@ public class HomePage extends JPanel implements ActionListener {
 	 */
 	public static void main(String[] args) {
 		HomePage home = new HomePage();
+		home.run();
 	}
 	/**
 	 * The action listener that will be used for the search button and the sort by menu
@@ -94,8 +108,10 @@ public class HomePage extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == go) {
-			mainFrame.setContentPane(Catalogue.buildCatalogue());
+			Catalogue.buildCatalogue();
+			mainFrame.setContentPane(Catalogue.cataloguePanel);
 			mainFrame.pack();
+		
 		}
 		if (e.getSource() == addEvent) {
 //			mainPanel.setVisible(false);
@@ -103,7 +119,9 @@ public class HomePage extends JPanel implements ActionListener {
 			mainFrame.setContentPane(c.eventAdd());
 			mainFrame.pack();
 		}
-		
+		if (e.getSource() == faq) {
+			
+		}
 		
 	}
 }
