@@ -16,6 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * This CreatePage class is used to enter a new event into the CincySearch application.
+ * @author Zach Katz, Brandon Hall, Hannah Ahlstrom
+ */
 public class CreatePage extends JPanel implements ActionListener {
 	String[] eventTypes = { "Bar", "Restaurant", "Museum", "Entertainment", "Zoo", "Indoor", "Outdoor" };
 	JButton addButton = new JButton("Add Event");
@@ -33,6 +37,10 @@ public class CreatePage extends JPanel implements ActionListener {
 			typeLabel = new JLabel("Type of Attraction:"), phoneLabel = new JLabel("Phone Number:"),
 			linkLabel = new JLabel("Link:"), hourLabel = new JLabel("Hours of Operation:");
 
+	/**
+	 * This method returns a Jpanel with the attributes of the added event
+	 * @return JPanel
+	 */
 	public JPanel eventAdd() {
 		JPanel bigPanel = new JPanel(new BorderLayout());
 		JPanel addPanel = new JPanel(new GridLayout(7, 2));
@@ -59,6 +67,10 @@ public class CreatePage extends JPanel implements ActionListener {
 	}
 
 	// TODO make the hoursofOpPanel
+	/**
+	 * This method returns a Jpanel with the daily hours of the added event
+	 * @return JPanel
+	 */
 	public JPanel hoursOfOpPanel() {
 		JPanel opPanel = new JPanel(new GridLayout(7, 1));
 		opPanel.add(mon);
@@ -71,6 +83,9 @@ public class CreatePage extends JPanel implements ActionListener {
 		return opPanel;
 	}
 
+	/**
+	 * This method loads in a new event from the text file
+	 */
 	public void addData() {
 		EventClass e = new EventClass(name.getText(), type.getSelectedItem().toString(), price.getText(),
 				link.getText(), phoneNum.getText(), address.getText(), description.getText(), imgUrl.getText(),
@@ -90,6 +105,11 @@ public class CreatePage extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * This method loads in a new event from the text file
+	 * @param HashMap<String, String>
+	 * @return String
+	 */	
 	public String hoursToString(HashMap<String, String> hash) {
 		String totalHours = "";
 		Iterator hashIterator = hash.entrySet().iterator();
@@ -105,10 +125,18 @@ public class CreatePage extends JPanel implements ActionListener {
 	}
 
 	// TODO: make the getHours method
+	/**
+	 * This method will get the hours values from the hashMap
+	 * @return HashMap<String, String>
+	 */
 	public HashMap<String, String> getHours() {
 		return null;
 	}
 
+	/**
+	 * This method overrides the actionPerformed method to give our button functionality
+	 * @param ActionEvent
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
