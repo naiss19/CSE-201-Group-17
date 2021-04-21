@@ -10,6 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+/**
+ * This is the Catalogue class that displays all the events the user can view.
+ * @author Zach Katz, Brandon Hall, Hannah Ahlstrom
+ * 
+ */
+
 public class Catalogue {
 	static JFrame frame;
 	static JPanel cataloguePanel;
@@ -24,6 +30,9 @@ public class Catalogue {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * This is the method that adds each event to the cataloge JPanel
+	 */
 	public static void buildCatalogue() {
 		cataloguePanel = new JPanel();
 		cataloguePanel.setLayout(new GridLayout(10, 1));
@@ -38,6 +47,10 @@ public class Catalogue {
 		cataloguePanel.setBorder(border);
 	}
 	
+	/**
+	 * This is the method that stores each event in an ArrayList
+	 * @return ArrayList<Entry>
+	 */
 	public static ArrayList<Entry> buildEvents() {
 		File data = null;
 		Scanner dataScanner = null;
