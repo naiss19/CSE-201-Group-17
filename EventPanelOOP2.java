@@ -14,6 +14,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * This is the Event Panel class that displays Events and all their information dynamically by using object-oriented programming
+ * @author Zach Katz, Brandon Hall, Hannah Ahlstrom
+ * 
+ */
 public class EventPanelOOP2 extends JFrame{
 	private JLabel headerLabel;
 	private JLabel statusLabel;
@@ -32,6 +37,7 @@ public class EventPanelOOP2 extends JFrame{
 	private HashMap<String, String> hours;
 
 	/**
+	 * This constructor creates the base panel and initializes local variables
 	 * @param headerLabel
 	 * @param name
 	 * @param type
@@ -77,6 +83,10 @@ public class EventPanelOOP2 extends JFrame{
 		
 	}
 
+	/**
+	 * This method creates the events title
+	 * @return JPanel
+	 */
 	public JPanel titlePanel() {
 		JPanel j = new JPanel(new GridLayout(1, 2));
 		j.add(addImg());
@@ -91,6 +101,10 @@ public class EventPanelOOP2 extends JFrame{
 
 	}
 
+	/**
+	 * This method creates the labels with all the event information
+	 * @return JPanel
+	 */
 	public JPanel labelPanel() {
 		JPanel l = new JPanel(new GridLayout(9, 2));
 		l.setSize(800, 500);
@@ -181,6 +195,10 @@ public class EventPanelOOP2 extends JFrame{
 
 	}
 
+	/**
+	 * This method creates the image label to display the logo of the Event
+	 * @return JLabel
+	 */
 	JLabel addImg() {
 
 		// image
@@ -203,6 +221,13 @@ public class EventPanelOOP2 extends JFrame{
 
 	}
 	
+	/**
+	 * This method resizes the image created to a specific size
+	 * @param BufferedImage img
+	 * @param int newW
+	 * @param int newH
+	 * @return BufferedImage
+	 */
 	public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
 	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
 	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
