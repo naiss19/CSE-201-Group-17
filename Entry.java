@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
- * This is the Entry class that creates entry events to store the data for each eventPanel display.
+ * This is the Entry class that creates entry events to store the data for the Catalogue event display.
  * @author Zach Katz, Brandon Hall, Hannah Ahlstrom
  * 
  */
