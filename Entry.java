@@ -13,10 +13,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+/**
+ * This is the Entry class that creates entry events to store the data for each eventPanel display.
+ * @author Zach Katz, Brandon Hall, Hannah Ahlstrom
+ * 
+ */
 public class Entry extends JPanel implements ActionListener{
 	String name, type, dollar;
 	JButton visit;
 	
+	/**
+	 * This Constructor creates an entry object with the following values
+	 * @param String name
+	 * @param String type
+	 * @param String dollar
+	 * @param boolean red
+	 */
 	public Entry(String name, String type, String dollar, boolean red) {
 		this.name = name;
 		this.type = type;
@@ -68,6 +80,10 @@ public class Entry extends JPanel implements ActionListener{
 		super.setBorder(border);
 	}
 
+	/**
+	 * This method overrides the actionPerformed method to grab values from our data file to call our Event and EventPanel classes
+	 * @param ActionEvent
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		File f = null;
