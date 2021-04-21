@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 /**
+ * This is the Home page class that displays the initial screen show to the user where they can go to the catalogue display page
+ * @author Zach Katz, Brandon Hall, Hannah Ahlstrom
  * 
- * @author BrandonHall
- *
  */
 public class HomePage extends JPanel implements ActionListener {
 	//TODO: Change sort into a JComboBox
@@ -76,7 +76,10 @@ public class HomePage extends JPanel implements ActionListener {
 		
 	}
 	
-	
+	/**
+          * This method sets the defaults and size to the mainPanel
+          * 
+          */
 	public void run() {
 		mainPanel.add(searchBar());
 		mainFrame.setSize(500, 300);
@@ -85,11 +88,19 @@ public class HomePage extends JPanel implements ActionListener {
 		mainFrame.setVisible(true);
 	}
 	
+	/**
+          * This method displays the FAQ text area giving instructions to the user
+          * 
+          */
 	public void FAQ() {
 		JFrame j = new JFrame();
 		JPanel p = new JPanel();
 		JTextArea t = new JTextArea();
-		t.setText("");
+		t.setText("Welcome to the CincySearch application! To begin viewing events in the Cincinnati area, press search. You will then be"
+			 + " redirected to our Catalogue page where you can view multiple events and their brief descriptions. To view a certain event in"
+			 + " more detail, press the GO button where you will be able to get an in-depth description of that event. Return to a previous page"
+			 + " anytime by using the Back buttons. If you are a business owner, you will be able to add your event to our application using the Create"
+			 + " New Event button.");
 		p.add(t);
 		j.setVisible(true);
 		j.setSize(500, 400);
@@ -104,6 +115,7 @@ public class HomePage extends JPanel implements ActionListener {
 	}
 	/**
 	 * The action listener that will be used for the search button and the sort by menu
+	 * @param ActionEvent e
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
