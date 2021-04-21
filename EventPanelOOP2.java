@@ -71,7 +71,7 @@ public class EventPanelOOP2 extends JFrame{
 		basePanel.add(titlePanel());
 		
 		basePanel.add(labelPanel());
-		this.setSize(800, 500);
+		this.setSize(1000, 800);
 		this.add(basePanel);
 		this.setVisible(true);
 		
@@ -192,7 +192,7 @@ public class EventPanelOOP2 extends JFrame{
 		try {
 			url = new URL(path);
 			image = ImageIO.read(url);
-			image = resize(image, 400, 3 00);
+			image = resize(image, 400, 300);
 		} catch (IOException exception) {
 		}
 
