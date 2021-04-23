@@ -5,17 +5,23 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="CincySearch">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../../../../Applications/Eclipse.app/Contents/Eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../.p2/pool/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
     <path id="CincySearch.classpath">
         <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -47,19 +53,34 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Catalogue">
-        <java classname="Catalogue" failonerror="true" fork="yes">
+    <target name="FutureEventTester">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="FutureEventTester" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
             <classpath refid="CincySearch.classpath"/>
-        </java>
+        </junit>
+    </target>
+    <target name="EventTester">
+         <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="EventTester" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+             <classpath refid="CincySearch.classpath"/>
+         </junit>
     </target>
     <target name="HomePage (1)">
         <java classname="HomePage" failonerror="true" fork="yes">
             <classpath refid="CincySearch.classpath"/>
         </java>
     </target>
-    <target name="Main">
-        <java classname="Main" failonerror="true" fork="yes">
-            <classpath refid="CincySearch.classpath"/>
-        </java>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>
