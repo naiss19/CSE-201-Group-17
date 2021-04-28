@@ -25,11 +25,15 @@ import javax.swing.JTextField;
 public class HomePage extends JPanel implements ActionListener {
 	// TODO: Change sort into a JComboBox
 	String[] sortTypes = { "Name", "Price"};
+	Color very_light_blue = new Color(51,204,255);
 
 	JComboBox sort = new JComboBox(sortTypes);
 	JButton go = new JButton("Go!");
+	go.setBackground(very_light_blue);
 	JButton faq = new JButton("FAQ");
+	faq.setBackground(very_light_blue);
 	JButton addEvent = new JButton("Create a new attraction");
+	addEvent.setBackground(very_light_blue);
 	JFrame mainFrame = new JFrame();
 	JPanel mainPanel = new JPanel();
 	Color pink = new Color(255, 192, 203);
