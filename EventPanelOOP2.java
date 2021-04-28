@@ -81,6 +81,9 @@ public class EventPanelOOP2 extends JFrame{
 		this.add(basePanel);
 		this.setVisible(true);
 		
+		Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
+		this.setBorder(border);
+		this.setBackground(new Color(51,204,255));
 	}
 
 	/**
@@ -94,7 +97,7 @@ public class EventPanelOOP2 extends JFrame{
 		headerLabel = new JLabel(name);
 //		headerLabel.setText("Brick Street");
 		headerLabel.setFont(new Font("TimesRoman", Font.BOLD | Font.ITALIC, 80));
-		headerLabel.setForeground(Color.RED.darker());
+		headerLabel.setForeground(Color.GRAY.darker());
 
 		j.add(headerLabel);
 		return j;
