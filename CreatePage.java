@@ -2,10 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -16,17 +19,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**
- * This CreatePage class is used to enter a new event into the CincySearch application.
- * @author Zach Katz, Brandon Hall, Hannah Ahlstrom
- */
-public class CreatePage extends JPanel implements ActionListener {
+public class CreatePage extends HomePage implements ActionListener {
+
+	HashMap<String, String> hours = new HashMap<String, String>();
+	String[] testDays = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 	String[] eventTypes = { "Bar", "Restaurant", "Museum", "Entertainment", "Zoo", "Indoor", "Outdoor" };
 	JButton addButton = new JButton("Add Event");
+	JButton backButton = new JButton("Back");
 	JTextField name = new JTextField(30), price = new JTextField(30), description = new JTextField(30),
 			phoneNum = new JTextField(30), link = new JTextField(30), address = new JTextField(30),
 			imgUrl = new JTextField(30);
-	//TODO: change the JTextfield to JComboBox and create start and end variables for each day
+	// TODO: change the JTextfield to JComboBox and create start and end variables
+	// for each day
 	JTextField mon = new JTextField(30), tue = new JTextField(30), wed = new JTextField(30), thurs = new JTextField(30),
 			fri = new JTextField(30), sat = new JTextField(30), sun = new JTextField(30);
 
@@ -35,15 +39,11 @@ public class CreatePage extends JPanel implements ActionListener {
 	// All of the labels for the
 	JLabel nameLabel = new JLabel("Name:"), priceLabel = new JLabel("Price:"), descLabel = new JLabel("Description:"),
 			typeLabel = new JLabel("Type of Attraction:"), phoneLabel = new JLabel("Phone Number:"),
-			linkLabel = new JLabel("Link:"), hourLabel = new JLabel("Hours of Operation:");
+			linkLabel = new JLabel("Link:"), hourLabel = new JLabel("Hours of Operation:"), imgLabel = new JLabel("Image Link:");
 
-	/**
-	 * This method returns a Jpanel with the attributes of the added event
-	 * @return JPanel
-	 */
 	public JPanel eventAdd() {
 		JPanel bigPanel = new JPanel(new BorderLayout());
-		JPanel addPanel = new JPanel(new GridLayout(7, 2));
+		JPanel addPanel = new JPanel(new GridLayout(8, 2));
 		addPanel.add(nameLabel);
 		addPanel.add(name);
 		addPanel.add(priceLabel);
@@ -56,93 +56,124 @@ public class CreatePage extends JPanel implements ActionListener {
 		addPanel.add(phoneNum);
 		addPanel.add(linkLabel);
 		addPanel.add(link);
+		addPanel.add(imgLabel);
+		addPanel.add(imgUrl);
 		addPanel.add(hourLabel);
+
 		hourLabel.setAlignmentX(CENTER_ALIGNMENT);
 		bigPanel.add(addPanel, BorderLayout.NORTH);
-//		bigPanel.add(hoursOfOpPanel(), BorderLayout.CENTER);
-		bigPanel.add(addButton, BorderLayout.CENTER);
+		bigPanel.add(hoursOfOpPanel(), BorderLayout.CENTER);
+		bigPanel.add(buttonPanel(), BorderLayout.SOUTH);
 		addButton.addActionListener(this);
+		backButton.addActionListener(this);
 		return bigPanel;
 
 	}
 
 	// TODO make the hoursofOpPanel
-	/**
-	 * This method returns a Jpanel with the daily hours of the added event
-	 * @return JPanel
-	 */
 	public JPanel hoursOfOpPanel() {
-		JPanel opPanel = new JPanel(new GridLayout(7, 1));
+
+		JPanel opPanel = new JPanel(new GridLayout(7, 2));
+		opPanel.add(new JLabel("Monday:"));
 		opPanel.add(mon);
+		opPanel.add(new JLabel("Tuesday:"));
 		opPanel.add(tue);
+		opPanel.add(new JLabel("Wednesday:"));
 		opPanel.add(wed);
+		opPanel.add(new JLabel("Thursday:"));
 		opPanel.add(thurs);
+		opPanel.add(new JLabel("Friday:"));
 		opPanel.add(fri);
+		opPanel.add(new JLabel("Saturday:"));
 		opPanel.add(sat);
+		opPanel.add(new JLabel("Sunday:"));
 		opPanel.add(sun);
 		return opPanel;
 	}
 
-	/**
-	 * This method loads in a new event from the text file
-	 */
+	public JPanel buttonPanel() {
+		JPanel j = new JPanel(new BorderLayout());
+		j.add(addButton, BorderLayout.CENTER);
+		j.add(backButton, BorderLayout.EAST);
+		return j;
+	}
+
+//	private void test() {
+//		
+//		for (int i = 0; i < 7; i++)
+//			testHours.put(testDays[i],"10:00am-5:00pm");
+//	}
+
 	public void addData() {
+//		test();
+//		hoursToString(hours);
+		hourAdd();
 		EventClass e = new EventClass(name.getText(), type.getSelectedItem().toString(), price.getText(),
 				link.getText(), phoneNum.getText(), address.getText(), description.getText(), imgUrl.getText(),
 				getHours());
 
+//		EventClass e = new EventClass("Brandon's Bar", "Bar", "$$$", "www.brandonsbar.com", "6154952722","704 Wesleywood", "It's aight", "www.googleimages.com", testHours);
+
 		try {
 
-			File dataFile = new File("/CincySearch/data.txt");
-			PrintWriter p = new PrintWriter(dataFile);
+			File dataFile = new File("data.txt");
+			FileWriter fr = new FileWriter(dataFile, true);
+			BufferedWriter br = new BufferedWriter(fr);
+			PrintWriter p = new PrintWriter(br);
 
-			p.write(e.getName() + "#" + e.getType() + "#" + hoursToString(e.hours) + "#" + e.getUrl() + "#"
+			p.println(e.getName() + "#" + e.getType() + "#" + hoursToString(e.hours) + e.getUrl() + "#"
 					+ e.getPhoneNum() + "#" + e.getAddress() + "#" + e.getDescription() + "#" + e.getImageUrl());
-
+			p.close();
+			br.close();
+			fr.close();
 		} catch (IOException ex) {
 			System.out.println("This data file does not exist");
 		}
 
 	}
 
-	/**
-	 * This method loads in a new event from the text file
-	 * @param HashMap<String, String>
-	 * @return String
-	 */	
-	public String hoursToString(HashMap<String, String> hash) {
-		String totalHours = "";
-		Iterator hashIterator = hash.entrySet().iterator();
+	private String hoursToString(HashMap<String, String> hash) {
 
-		while (hashIterator.hasNext()) {
-			totalHours += hashIterator.next() + "#";
-			hashIterator = (Iterator) hashIterator.next();
+		StringBuilder totalHours = new StringBuilder();
+		for (String key : hash.keySet())
+			totalHours.append(hash.get(key) + "#");
 
-		}
-
-		return totalHours;
+		return totalHours.toString();
 
 	}
 
 	// TODO: make the getHours method
-	/**
-	 * This method will get the hours values from the hashMap
-	 * @return HashMap<String, String>
-	 */
 	public HashMap<String, String> getHours() {
-		return null;
+		return hours;
+	}
+	
+	private void hourAdd() {
+		hours.put("Monday", mon.getText());
+		hours.put("Tuesday", mon.getText());
+		hours.put("Wednesday", mon.getText());
+		hours.put("Thursday", mon.getText());
+		hours.put("Friday", mon.getText());
+		hours.put("Saturday", mon.getText());
+		hours.put("Sunday", mon.getText());
 	}
 
-	/**
-	 * This method overrides the actionPerformed method to give our button functionality
-	 * @param ActionEvent
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == addButton) {
 			addData();
 		}
+		if (e.getSource() == backButton) {
+			HomePage h = new HomePage();
+			h.run();
+			System.out.println("this shit works");
+		}
 	}
+//	public static void main(String[] args) {
+//		CreatePage p = new CreatePage();
+//		for(int i = 0; i < 10; i++) {
+//			p.addData();
+//			System.out.println("Data added");
+//		}
 
 }
