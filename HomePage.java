@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,20 +26,17 @@ import javax.swing.JTextField;
  */
 public class HomePage extends JPanel implements ActionListener {
 	// TODO: Change sort into a JComboBox
-	String[] sortTypes = { "Name", "Price"};
-	Color very_light_blue = new Color(51,204,255);
+	String[] sortTypes = { " ", "Name", "Price" };
 
 	JComboBox sort = new JComboBox(sortTypes);
 	JButton go = new JButton("Go!");
-	go.setBackground(very_light_blue);
 	JButton faq = new JButton("FAQ");
-	faq.setBackground(very_light_blue);
 	JButton addEvent = new JButton("Create a new attraction");
-	addEvent.setBackground(very_light_blue);
 	JFrame mainFrame = new JFrame();
 	JPanel mainPanel = new JPanel();
 	Color pink = new Color(255, 192, 203);
 	JTextField bar = new JTextField("Search", 30);
+
 	/**
 	 * Creates the home page using a couple JPanels, a JButton, and a JMenu to sort
 	 * by a certain criteria
@@ -57,7 +56,7 @@ public class HomePage extends JPanel implements ActionListener {
 		JPanel buttonPanel = new JPanel();
 
 		// Adding and formatting text for the label and text field
-		
+
 		JLabel label = new JLabel("CincySearch");
 		label.setSize(100, 100);
 		label.setFont(label.getFont().deriveFont(64.0f));
@@ -95,7 +94,7 @@ public class HomePage extends JPanel implements ActionListener {
 	}
 
 	public void run() {
-		
+
 		mainPanel.add(searchBar());
 		mainFrame.setSize(500, 300);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,50 +113,69 @@ public class HomePage extends JPanel implements ActionListener {
 		j.setSize(500, 400);
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	public static void exactName(String name) throws NoSuchElementException{
-		
+
+	public static void easterEgg() {
+
+		JFrame easterEgg = new JFrame();
+		ImageIcon TA = new ImageIcon("TaEasterEgg.jpg");
+		easterEgg.add(new JLabel(TA));
+		easterEgg.setSize(TA.getIconHeight(), TA.getIconWidth());
+		easterEgg.setVisible(true);
+		easterEgg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		System.out.println("It work");
+
+	}
+
+	public static void exactName(String name) throws NoSuchElementException {
+
 		Scanner s = null;
 		File f = null;
 		String eventName = null;
-		try {
-			f = new File("/Users/BrandonHall/Documents/Development/eclipse/CincySearch/data.txt");
-			s = new Scanner(f);
-			s.useDelimiter("#");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for (int i = 0; i < 10; i++){
-			
-			eventName = s.next();
-			if (eventName.equals(name))
-				break;
-			else {
-				System.out.println(eventName);
-				s.nextLine();
-			}
-			
-		}
-		String monday = s.next();
-		String tuesday = s.next();
-		String wednesday = s.next();
-		String thursday = s.next();
-		String friday = s.next();
-		String saturday = s.next();
-		String sunday = s.next();
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("Monday", monday);
-		map.put("Tuesday", tuesday);
-		map.put("Wednesday", wednesday);
-		map.put("Thursday", thursday);
-		map.put("Friday", friday);
-		map.put("Saturday", saturday);
-		map.put("Sunday", sunday);
-		EventClass event = new EventClass(eventName, s.next(), s.next(), s.next(), s.next(), s.next(), s.next(), s.next(), map);
-		EventPanelOOP2 eventpanel= new EventPanelOOP2(event.getName(), event.getType(), event.getPrice(), event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(), event.getImageUrl(), map);
+
 		
-	}
+
+
+			try {
+				f = new File("data.txt");
+				s = new Scanner(f);
+				s.useDelimiter("#");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for (int i = 0; i < 10; i++) {
+
+				eventName = s.next();
+				if (eventName.equals(name))
+					break;
+				else {
+					System.out.println(eventName);
+					s.nextLine();
+				}
+
+			}
+			String monday = s.next();
+			String tuesday = s.next();
+			String wednesday = s.next();
+			String thursday = s.next();
+			String friday = s.next();
+			String saturday = s.next();
+			String sunday = s.next();
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("Monday", monday);
+			map.put("Tuesday", tuesday);
+			map.put("Wednesday", wednesday);
+			map.put("Thursday", thursday);
+			map.put("Friday", friday);
+			map.put("Saturday", saturday);
+			map.put("Sunday", sunday);
+			EventClass event = new EventClass(eventName, s.next(), s.next(), s.next(), s.next(), s.next(), s.next(),
+					s.next(), map);
+			EventPanelOOP2 eventpanel = new EventPanelOOP2(event.getName(), event.getType(), event.getPrice(),
+					event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(),
+					event.getImageUrl(), map);
+
+		}
 
 	/**
 	 * This method creates a JFrame in which the main JPanel is added.
@@ -177,16 +195,18 @@ public class HomePage extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == go) {
-			System.out.println(bar.getText());
+//			System.out.println(bar.getText());
 			if (bar.getText().equals(new String("Search"))) {
+				System.out.println("We searchin");
 				Catalogue.buildCatalogue(sort.getSelectedIndex());
 				mainFrame.setContentPane(Catalogue.cataloguePanel);
 				mainFrame.pack();
-			return;
+				return;
 			}
+			System.out.println(bar.getText());
 			exactName(bar.getText());
-			
-
+			if(bar.getText().equals("Patricia Lennon"))
+				easterEgg();
 		}
 		if (e.getSource() == addEvent) {
 //			mainPanel.setVisible(false);
@@ -197,8 +217,6 @@ public class HomePage extends JPanel implements ActionListener {
 		if (e.getSource() == faq) {
 			FAQ();
 		}
-		
-		
 
 	}
 }
