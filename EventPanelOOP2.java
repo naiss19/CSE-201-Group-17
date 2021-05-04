@@ -9,10 +9,12 @@ import java.net.URL;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  * This is the Event Panel class that displays Events and all their information dynamically by using object-oriented programming
@@ -82,7 +84,7 @@ public class EventPanelOOP2 extends JFrame{
 		this.setVisible(true);
 		
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
-		this.setBorder(border);
+		this.getRootPane().setBorder(border);
 		this.setBackground(new Color(51,204,255));
 	}
 
