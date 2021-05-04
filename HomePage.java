@@ -107,11 +107,19 @@ public class HomePage extends JPanel implements ActionListener {
 		JFrame j = new JFrame();
 		JPanel p = new JPanel();
 		JTextArea t = new JTextArea();
-		t.setText("");
+		t.setText(
+				"Welcome to the CincySearch application! To begin viewing events in the Cincinnati area, press search. You will then be redirected to our Catalogue page where you can view multiple events and their brief descriptions. To view a certain event in more detail, press the GO button where you will be able to get an in-depth description of that event. Return to a previous page anytime by using the Back buttons. If you are a business owner, you will be able to add your event to our application using the Create New Event button.");
+		t.setLineWrap(true);
+		t.setWrapStyleWord(true);
+		t.setEditable(false);
 		p.add(t);
+		j.add(p);
 		j.setVisible(true);
-		j.setSize(500, 400);
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		j.setSize(500, 200);
+		t.setSize(j.getSize());
+		t.setBackground(pink);
+		p.setBackground(pink);
+//		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void easterEgg() {
@@ -132,50 +140,47 @@ public class HomePage extends JPanel implements ActionListener {
 		File f = null;
 		String eventName = null;
 
-		
+		try {
+			f = new File("data.txt");
+			s = new Scanner(f);
+			s.useDelimiter("#");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 0; i < 10; i++) {
 
-
-			try {
-				f = new File("data.txt");
-				s = new Scanner(f);
-				s.useDelimiter("#");
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			eventName = s.next();
+			if (eventName.equals(name))
+				break;
+			else {
+				System.out.println(eventName);
+				s.nextLine();
 			}
-			for (int i = 0; i < 10; i++) {
-
-				eventName = s.next();
-				if (eventName.equals(name))
-					break;
-				else {
-					System.out.println(eventName);
-					s.nextLine();
-				}
-
-			}
-			String monday = s.next();
-			String tuesday = s.next();
-			String wednesday = s.next();
-			String thursday = s.next();
-			String friday = s.next();
-			String saturday = s.next();
-			String sunday = s.next();
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("Monday", monday);
-			map.put("Tuesday", tuesday);
-			map.put("Wednesday", wednesday);
-			map.put("Thursday", thursday);
-			map.put("Friday", friday);
-			map.put("Saturday", saturday);
-			map.put("Sunday", sunday);
-			EventClass event = new EventClass(eventName, s.next(), s.next(), s.next(), s.next(), s.next(), s.next(),
-					s.next(), map);
-			EventPanelOOP2 eventpanel = new EventPanelOOP2(event.getName(), event.getType(), event.getPrice(),
-					event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(),
-					event.getImageUrl(), map);
 
 		}
+		String monday = s.next();
+		String tuesday = s.next();
+		String wednesday = s.next();
+		String thursday = s.next();
+		String friday = s.next();
+		String saturday = s.next();
+		String sunday = s.next();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("Monday", monday);
+		map.put("Tuesday", tuesday);
+		map.put("Wednesday", wednesday);
+		map.put("Thursday", thursday);
+		map.put("Friday", friday);
+		map.put("Saturday", saturday);
+		map.put("Sunday", sunday);
+		EventClass event = new EventClass(eventName, s.next(), s.next(), s.next(), s.next(), s.next(), s.next(),
+				s.next(), map);
+		EventPanelOOP2 eventpanel = new EventPanelOOP2(event.getName(), event.getType(), event.getPrice(),
+				event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(), event.getImageUrl(),
+				map);
+
+	}
 
 	/**
 	 * This method creates a JFrame in which the main JPanel is added.
@@ -205,7 +210,7 @@ public class HomePage extends JPanel implements ActionListener {
 			}
 			System.out.println(bar.getText());
 			exactName(bar.getText());
-			if(bar.getText().equals("Patricia Lennon"))
+			if (bar.getText().equals("Patricia Lennon"))
 				easterEgg();
 		}
 		if (e.getSource() == addEvent) {
