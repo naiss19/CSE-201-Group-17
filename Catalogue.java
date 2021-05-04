@@ -25,7 +25,7 @@ public class Catalogue {
 		frame.setSize(600, 850);
 		frame.setTitle("Cincy Catalogue");
 		
-		buildCatalogue(-1);
+		buildCatalogue(0);
 		frame.add(cataloguePanel);
 		frame.setVisible(true);
 	}
@@ -63,7 +63,7 @@ public class Catalogue {
 			e.printStackTrace();
 		}
 		ArrayList<Entry> catEntries = null;
-		if (sort == -1) {
+		if (sort == 0) {
 			catEntries = new ArrayList<Entry>();
 			boolean pink;
 			for (int i = 0; i < 10; i++) {
@@ -80,7 +80,7 @@ public class Catalogue {
 				dataScanner.nextLine();		
 			}
 		}
-		else if (sort == 0) {
+		else if (sort == 2) {
 			catEntries = new ArrayList<Entry>();
 			ArrayList<String> used = new ArrayList<String>();
 			boolean pink;
