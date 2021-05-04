@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
 /**
@@ -98,7 +100,7 @@ public class EventPanelOOP2 extends JFrame{
 		System.out.println(name);
 		headerLabel = new JLabel(name);
 //		headerLabel.setText("Brick Street");
-		headerLabel.setFont(new Font("TimesRoman", Font.BOLD | Font.ITALIC, 80));
+		headerLabel.setFont(new Font("TimesRoman", Font.BOLD | Font.ITALIC, 40));
 		headerLabel.setForeground(Color.GRAY.darker());
 
 		j.add(headerLabel);
@@ -114,88 +116,122 @@ public class EventPanelOOP2 extends JFrame{
 		JPanel l = new JPanel(new GridLayout(9, 2));
 		l.setSize(800, 500);
 	    Color navy = new Color(0, 0, 204); 
-	    JLabel typeLabel = new JLabel("", JLabel.RIGHT);
-	      typeLabel.setText("Venue Type: ");
+	    JLabel typeLabel = new JLabel("", JLabel.LEFT);
+	      typeLabel.setText("Venue Type: " + type);
 	      typeLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      typeLabel.setForeground(Color.BLACK);
 	      l.add(typeLabel);
-	      JLabel eventType = new JLabel("", JLabel.LEFT);
-	      eventType.setText(type);
-	      eventType.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
-	      eventType.setForeground(Color.black);
-	      l.add(eventType);
+//	      JLabel eventType = new JLabel("", JLabel.LEFT);
+//	      //eventType.setText(type);
+//	      eventType.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
+//	      eventType.setForeground(Color.black);
+//	      l.add(eventType);
 	      
 	      //Price 
-	      JLabel priceLabel = new JLabel("", JLabel.RIGHT);
-	      priceLabel.setText("Price: ");
+	      JLabel priceLabel = new JLabel("", JLabel.LEFT);
+	      priceLabel.setText("Price: " + price);
 	      priceLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      priceLabel.setForeground(Color.BLACK);
 	      l.add(priceLabel);
-	      JLabel eventPrice = new JLabel("", JLabel.LEFT);
-	      eventPrice.setText(price);
-	      eventPrice.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
-	      eventPrice.setForeground(Color.black);
-	      l.add(eventPrice);
+//	      JLabel eventPrice = new JLabel("", JLabel.LEFT);
+//	      //eventPrice.setText(price);
+//	      eventPrice.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
+//	      eventPrice.setForeground(Color.black);
+//	      l.add(eventPrice);
 
 	      // Website info
-	      JLabel weblink = new JLabel("", JLabel.RIGHT);
-	      weblink.setText("Visit the Website: ");
+	      JLabel weblink = new JLabel("", JLabel.LEFT);
+	      weblink.setText("Visit the Website: " + url);
 	      weblink.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      weblink.setForeground(Color.BLACK);
 	      l.add(weblink);
-	      JLabel eventWeblink = new JLabel("", JLabel.LEFT);
-	      eventWeblink.setText(url);
-	      eventWeblink.setFont(new Font ("TimesRoman", Font.ITALIC, 20));
-	      eventWeblink.setForeground(navy);
-	      l.add(eventWeblink);
+//	      JLabel eventWeblink = new JLabel("", JLabel.LEFT);
+//	      //eventWeblink.setText(url);
+//	      eventWeblink.setFont(new Font ("TimesRoman", Font.ITALIC, 20));
+//	      eventWeblink.setForeground(navy);
+//	      l.add(eventWeblink);
 	      
 	      //Phone number
-	      JLabel contact = new JLabel("", JLabel.RIGHT);
-	      contact.setText("Contact the Venue: ");
+	      JLabel contact = new JLabel("", JLabel.LEFT);
+	      contact.setText("Contact the Venue: " + phoneNum);
 	      contact.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      contact.setForeground(Color.BLACK);
 	      l.add(contact);
-	      JLabel eventContact= new JLabel("", JLabel.LEFT);
-	      eventContact.setText(phoneNum);
-	      eventContact.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
-	      eventContact.setForeground(navy);
-	      l.add(eventContact);
+//	      JLabel eventContact= new JLabel("", JLabel.LEFT);
+//	      //eventContact.setText(phoneNum);
+//	      eventContact.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
+//	      eventContact.setForeground(navy);
+//	      l.add(eventContact);
 	      
 	      //Address
-	      JLabel addressLabel = new JLabel("", JLabel.RIGHT);
-	      addressLabel.setText("Venue Address: ");
+	      JLabel addressLabel = new JLabel("", JLabel.LEFT);
+	      addressLabel.setText("Venue Address: " + address);
 	      addressLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      addressLabel.setForeground(Color.BLACK);
 	      l.add(addressLabel);
-	      JLabel eventAddress= new JLabel("", JLabel.LEFT);
-	      eventAddress.setText(address);
-	      eventAddress.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
-	      eventAddress.setForeground(navy);
-	      l.add(eventAddress);
+//	      JLabel eventAddress= new JLabel("", JLabel.LEFT);
+//	      //eventAddress.setText(address);
+//	      eventAddress.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
+//	      eventAddress.setForeground(navy);
+//	      l.add(eventAddress);
 	      
 	      //Hours
-	      JLabel hours = new JLabel("", JLabel.RIGHT);
-	      hours.setText("Hours: ");
+	      //JLabel hours = new JLabel("", JLabel.LEFT);
+	      JTextArea hours = new JTextArea("Hours: " + hoursString);
+	      hours.setRows(2);
+	      hours.setEditable(false);
+	      hours.setLineWrap(true);
+	      hours.setWrapStyleWord(true);
+	      
+	      hours.setOpaque(false);
+	      JScrollPane scrollPane = new JScrollPane(hours);
+	      //scrollPane.getViewport().setOpaque(false);
+	      //scrollPane.setOpaque(false);
+	      scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	      
+	      //hours.setText("Hours: " + hoursString);
 	      hours.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      hours.setForeground(Color.BLACK);
-	      l.add(hours);
-	      JLabel eventHours= new JLabel("", JLabel.LEFT);
-	      eventHours.setText(hoursString);
-	      eventHours.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
-	      eventHours.setForeground(navy);
-	      l.add(eventHours);
+	      l.add(scrollPane);
+	      //l.add(hours);
+//	      JLabel eventHours= new JLabel("", JLabel.LEFT);
+//	      //eventHours.setText(hoursString);
+//	      eventHours.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
+//	      eventHours.setForeground(navy);
+//	      l.add(eventHours);
+	      
+//	      JTextArea spacer = new JTextArea("");
+//	      spacer.setOpaque(false);
+//	      JScrollPane scrollPaneSpacer = new JScrollPane(spacer);
+//	      scrollPaneSpacer.getViewport().setOpaque(false);
+//	      scrollPaneSpacer.setOpaque(false);
+//	      l.add(spacer);
+	      
 	      
 	      //description 
-	      JLabel descriptionLabel = new JLabel("", JLabel.RIGHT);
-	      descriptionLabel.setText("About: ");
+	      //JLabel descriptionLabel = new JLabel("", JLabel.LEFT);
+	      JTextArea descriptionLabel = new JTextArea("About: " + description);
+	      descriptionLabel.setRows(2);
+	      descriptionLabel.setEditable(false);
+	      descriptionLabel.setLineWrap(true);
+	      descriptionLabel.setWrapStyleWord(true);
+	      
+	      descriptionLabel.setOpaque(false);
+	      JScrollPane scrollPane2 = new JScrollPane(descriptionLabel);
+	      //scrollPane2.getViewport().setOpaque(false);
+	      //scrollPane2.setOpaque(false);
+	      scrollPane2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	      
+	      //descriptionLabel.setText("About: " + description);
 	      descriptionLabel.setFont(new Font ("TimesRoman", Font.BOLD, 20));
 	      descriptionLabel.setForeground(Color.BLACK);
-	      l.add(descriptionLabel);
-	      JLabel eventDescription= new  JLabel("", JLabel.LEFT);
-	      eventDescription.setText(description);
-	      eventDescription.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
-	      eventDescription.setForeground(Color.black);
-	      l.add(eventDescription);
+	      l.add(scrollPane2);
+	      //l.add(descriptionLabel);
+//	      JLabel eventDescription= new  JLabel("", JLabel.LEFT);
+//	      //eventDescription.setText(description);
+//	      eventDescription.setFont(new Font ("TimesRoman", Font.PLAIN, 20));
+//	      eventDescription.setForeground(Color.black);
+//	      l.add(eventDescription);
 		return l;
 
 	}
