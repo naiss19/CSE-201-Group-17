@@ -26,7 +26,7 @@ import javax.swing.JTextField;
  */
 public class HomePage extends JPanel implements ActionListener {
 	// TODO: Change sort into a JComboBox
-	String[] sortTypes = { " ", "Name", "Price" };
+	String[] sortTypes = { " ", "Price", "Name" };
 
 	JComboBox sort = new JComboBox(sortTypes);
 	JButton go = new JButton("Go!");
@@ -159,6 +159,8 @@ public class HomePage extends JPanel implements ActionListener {
 			}
 
 		}
+		String type = s.next();
+		String price = s.next();
 		String monday = s.next();
 		String tuesday = s.next();
 		String wednesday = s.next();
@@ -174,8 +176,7 @@ public class HomePage extends JPanel implements ActionListener {
 		map.put("Friday", friday);
 		map.put("Saturday", saturday);
 		map.put("Sunday", sunday);
-		EventClass event = new EventClass(eventName, s.next(), s.next(), s.next(), s.next(), s.next(), s.next(),
-				s.next(), map);
+		Event event = new Event(eventName, type, price, s.next(), s.next(), s.next(), s.next(), s.next(), map);
 		EventPanelOOP2 eventpanel = new EventPanelOOP2(event.getName(), event.getType(), event.getPrice(),
 				event.getUrl(), event.getPhoneNum(), event.getAddress(), event.getDescription(), event.getImageUrl(),
 				map);
@@ -204,14 +205,17 @@ public class HomePage extends JPanel implements ActionListener {
 			if (bar.getText().equals(new String("Search"))) {
 				System.out.println("We searchin");
 				Catalogue.buildCatalogue(sort.getSelectedIndex());
+				System.out.println(sort.getSelectedIndex());
 				mainFrame.setContentPane(Catalogue.cataloguePanel);
 				mainFrame.pack();
 				return;
 			}
-			System.out.println(bar.getText());
-			exactName(bar.getText());
-			if (bar.getText().equals("Patricia Lennon"))
+			//System.out.println(bar.getText());
+			else if (bar.getText().equals("Patricia Lennon")) {
 				easterEgg();
+			} else {
+				exactName(bar.getText());
+			}
 		}
 		if (e.getSource() == addEvent) {
 //			mainPanel.setVisible(false);
